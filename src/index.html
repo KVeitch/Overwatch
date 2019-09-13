@@ -6,11 +6,18 @@
   <body>
     <header>
       <h1>Mejores Vistas</h1>
-      <span class="date">DateHolder</span>
+      <div>
+        <script type='text/javascript' src='https://darksky.net/widget/default-small/39.741,-104.9858/us12/en.js?width=65%&height=70&title=Full Forecast&textColor=333333&bgColor=f8f6f7&transparency=false&skyColor=undefined&fontFamily=Sans-Serif&customFont=&units=us'></script>
+        <div class="date-time">
+          <p id="time">00:00 PM</p>
+          <p class="date">0000/00/00</p>
+        </div>
+      </div>
   </header>
     <main class="tabs">
       <div class="tabs-nav">
-        <div class="button"><a href="#js-main">Main</a></div>                
+        <div class="button"><a href="#js-main">Main</a></div>
+        <div class="button"><a href="#js-booking">Booking</a></div>                 
         <div class="button"><a href="#js-guest">Guests</a></div>
         <div class="button"><a href="#js-rooms">Rooms</a></div>
         <div class="button"><a href="#js-orders">Orders</a></div>
@@ -23,6 +30,12 @@
             nec neque nisi, dictum aliquet lectus.
           </p>
         </div>
+        <div id="js-booking">
+            <p>
+              Phasellus pharetra aliquet viverra. Donec scelerisque tincidunt
+              diam, eu fringilla urna auctor at.
+            </p>
+        </div>
         <div id="js-guest">
           <p>
             Phasellus pharetra aliquet viverra. Donec scelerisque tincidunt
@@ -30,13 +43,12 @@
           </p>
         </div>
         <div id="js-rooms">
-          <p>Here is where we would display the bookings!!</p>
+          <p>Here is where we would display the room information!!</p>
         </div>
         <div id="js-orders">
           <p>Here is where we would display the bookings!!</p>
         </div>
       </div>
     </main>
-    <!-- <object type="text/html" data="https://www.earthcam.com/usa/colorado/denver/?cam=denver"></object> -->
   </body>
 </html>

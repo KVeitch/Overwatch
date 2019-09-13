@@ -1,5 +1,15 @@
 @import 'colors', url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
 
+html {
+  height:100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+}
+
 body {
   background: $backgroundColor;
   // background-image: url('https://static.cbslocal.com/cbs/kcnc/webcams/milehi.jpg');
@@ -7,16 +17,46 @@ body {
   // background-image: url('https://www.earthcam.com/usa/colorado/denver/?cam=denver');
   // background-image: url("https://api.earthcam.net/dot-net/v0/object/GtVJZlL4VnwZ3X0VJw8Bse0YReLBeahn9ymfZy8YvZENxQAqapAVVnNTRqduHk_J?i=f0871f1b79786031652cb64d03d265ea");
   background-repeat: no-repeat;
+  height:100%;
 }
 
 header {
   display: flex;
   justify-content:space-between;
   align-items:center;
+  border-radius: 6px;
+  background: $activeTab;
+  padding: 10px 20px;
+  margin-bottom:10px;
+
+    h1 {
+      font-size:36px;
+    }
+
+    div {
+      display:flex;
+      align-items: center;
+      justify-content: end;
+    }
+    iframe {
+      width:225px;
+    }
+
+    #time {
+      font-size:30px;
+    }
+
+    .date {
+      font-size:20px;
+    }
+
+    .date-time {
+      display:block;
+    }
 }
 
 main {
-//  background:$accentcolorBlue;
+  height: calc(100% - 225px);
 }
 
 object {
@@ -46,9 +86,9 @@ object {
   border-top-right-radius: 6px;
 }
 a {
-  background: #eaeaed;
-  border: 1px solid #cecfd5;
-  color: #0087cc;
+  background: $inactiveTab;
+  border: 1px solid $activeTab;
+  color: $activeTextColor;
   display: block;
   font-weight: 600;
   padding: 10px 0;
@@ -57,10 +97,9 @@ a {
 }
 a:hover {
   color: $hoverColor;
-  text-shadow: 0px 0px 1px black, 0px 0px 5px $hoverColor;
 }
 .tab-active a {
-  background: #fff;
+  background: $activeTab;
   border-bottom-color: transparent;
   color: $activeTextColor;
 
@@ -68,11 +107,13 @@ a:hover {
 }
 .tabs-stage {
   border: 1px solid #cecfd5;
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
   border-top: 0;
   clear: both;
   padding: 24px 30px;
   position: relative;
   top: -1px;
+  background:$activeTab;
+  min-height: 100%;
 }
 
