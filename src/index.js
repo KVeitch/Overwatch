@@ -6,7 +6,7 @@ import './css/base.scss';
 import Hotel from './hotel';
 
 let hotel;
-// roomservice data
+
 let servicesData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices')
   .then(data => data.json());
 
@@ -36,6 +36,7 @@ $('.tabs-nav a').on('click', function(event) {
   $($(this).attr('href')).show();
 });
 
-//Starts Clock on DOM
+//Starts Clock on header and set todays date
 domUpdates.updateClock()
+domUpdates.setCurrentDate()
 
