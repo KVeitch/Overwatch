@@ -12,6 +12,7 @@ html {
 
 body {
   background: $backgroundColor;
+  padding:10px;
   // background-image: url('https://static.cbslocal.com/cbs/kcnc/webcams/milehi.jpg');
   font: 16px/30px "Lato";
   // background-image: url('https://www.earthcam.com/usa/colorado/denver/?cam=denver');
@@ -25,7 +26,7 @@ header {
   justify-content:space-between;
   align-items:center;
   border-radius: 6px;
-  background: $activeTab;
+  // background: $activeTab;
   padding: 10px 20px;
   margin-bottom:10px;
 
@@ -56,7 +57,7 @@ header {
 }
 
 main {
-  height: calc(100% - 225px);
+  height: calc(100% - 155px);
 }
 
 object {
