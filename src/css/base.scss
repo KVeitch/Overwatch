@@ -1,20 +1,26 @@
-@import 'colors';
+@import 'colors', url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
 
 body {
-  color: #666;
-  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+  background: $backgroundColor;
+  // color: #666;
+  font: 16px/30px "Lato";
 }
+
+main {
+//  background:$accentcolorBlue;
+}
+
 .tabs {
-  max-width: 538px;
+  width: 100%;
 }
 
 .tabs-nav {
+  width:40%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .tabs-nav .button {
-/*   display:inline-block; */
   width: 40%;
 }
 .tabs-nav .button:first-child a {
@@ -35,12 +41,14 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #ff7b29;
+  color: $hoverColor;
+  text-shadow: 0px 0px 1px black, 0px 0px 5px $hoverColor;
 }
 .tab-active a {
   background: #fff;
   border-bottom-color: transparent;
-  color: #2db34a;
+  color: $activeTextColor;
+
   cursor: default;
 }
 .tabs-stage {
