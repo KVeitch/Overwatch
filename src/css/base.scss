@@ -2,12 +2,27 @@
 
 body {
   background: $backgroundColor;
-  // color: #666;
+  // background-image: url('https://static.cbslocal.com/cbs/kcnc/webcams/milehi.jpg');
   font: 16px/30px "Lato";
+  // background-image: url('https://www.earthcam.com/usa/colorado/denver/?cam=denver');
+  // background-image: url("https://api.earthcam.net/dot-net/v0/object/GtVJZlL4VnwZ3X0VJw8Bse0YReLBeahn9ymfZy8YvZENxQAqapAVVnNTRqduHk_J?i=f0871f1b79786031652cb64d03d265ea");
+  background-repeat: no-repeat;
+}
+
+header {
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 main {
 //  background:$accentcolorBlue;
+}
+
+object {
+  border:1px solid red;
+  height:800px;
+  width:100%;
 }
 
 .tabs {
