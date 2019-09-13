@@ -5,8 +5,8 @@ class Hotel {
     this.rooms = data[2].rooms;
     this.bookings = data[3].bookings;
   }
-  report() { 
-    console.log(this)
+  getGuest(name) { 
+    this.guest
   }
 }
 

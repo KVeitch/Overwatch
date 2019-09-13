@@ -1,7 +1,6 @@
 class Guest {
-  constructor(id, name) {
-    this.id = id;
-    this.name = name;
+  constructor(guest) {
+    Object.assign(this, guest)
   }
 }
 
