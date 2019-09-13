@@ -1,49 +1,42 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you import jQuery into a JS file if you use jQuery in that file
-import $ from 'jquery';
-// An example of how you tell webpack to use a CSS (SCSS) file
-import './css/base.scss';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+// import './images/turing-logo.png'
+import domUpdates from './domUpdates';
+import $ from 'jquery';
+import './css/base.scss';
+import Hotel from './hotel';
 
-let roomServices, userData, roomData, bookings;
-// roomservice data
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices')
-  .then(data => data.json())
-  .then(data => {roomServices = data.roomServices})
-  .then(()=>{console.log('roomServices',roomServices)})
+let hotel;
 
-// .then(data => {assignRoomServiceData(data.roomServices)})
+let servicesData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices')
+  .then(data => data.json());
 
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
-  .then(data => data.json())
-  .then(data => {userData = data.users});
-  // .then(()=>{console.log('userData',userData)})
+let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
+  .then(data => data.json());
 
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
-  .then(data => data.json())
-  .then(data => {roomData = data.rooms});
-  // .then(()=>{console.log('roomData',roomData)})
+let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
+  .then(data => data.json());
 
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
-  .then(data => data.json())
-  .then(data => {bookings = data.bookings})
-  .then(()=>{console.log('bookings',bookings)});
+let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
+  .then(data => data.json());
 
+Promise.all([servicesData, userData, roomData, bookingData])
+  .then(data => hotel = new Hotel(data))
 
-
-  // Show the first tab by default
+// Show the first tab by default
 $('.tabs-stage div').hide();
 $('.tabs-stage div:first').show();
 $('.tabs-nav .button:first').addClass('tab-active');
 
 // Change tab class and display content
-$('.tabs-nav a').on('click', function(event){
+$('.tabs-nav a').on('click', function(event) {
   event.preventDefault();
   $('.tabs-nav .button').removeClass('tab-active');
   $(this).parent().addClass('tab-active');
   $('.tabs-stage div').hide();
   $($(this).attr('href')).show();
 });
+
+//Starts Clock on header and set todays date
+domUpdates.updateClock()
+domUpdates.setCurrentDate()
+
