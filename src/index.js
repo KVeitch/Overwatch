@@ -5,45 +5,38 @@
 import $ from 'jquery';
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+import Hotel from './hotel';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+// import './images/turing-logo.png'
 
-let roomServices, userData, roomData, bookings;
+let hotel;
 // roomservice data
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices')
-  .then(data => data.json())
-  .then(data => {roomServices = data.roomServices})
-  .then(()=>{console.log('roomServices',roomServices)})
+let servicesData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices')
+  .then(data => data.json());
 
-// .then(data => {assignRoomServiceData(data.roomServices)})
+let userData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
+  .then(data => data.json());
 
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
-  .then(data => data.json())
-  .then(data => {userData = data.users});
-  // .then(()=>{console.log('userData',userData)})
+let roomData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
+  .then(data => data.json());
 
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
-  .then(data => data.json())
-  .then(data => {roomData = data.rooms});
-  // .then(()=>{console.log('roomData',roomData)})
+let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
+  .then(data => data.json());
 
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
-  .then(data => data.json())
-  .then(data => {bookings = data.bookings})
-  .then(()=>{console.log('bookings',bookings)});
+Promise.all([servicesData, userData, roomData, bookingData])
+  .then(data => hotel = new Hotel(data))
 
-
-
-  // Show the first tab by default
+// Show the first tab by default
 $('.tabs-stage div').hide();
 $('.tabs-stage div:first').show();
 $('.tabs-nav .button:first').addClass('tab-active');
 
 // Change tab class and display content
-$('.tabs-nav a').on('click', function(event){
+$('.tabs-nav a').on('click', function(event) {
   event.preventDefault();
   $('.tabs-nav .button').removeClass('tab-active');
   $(this).parent().addClass('tab-active');
   $('.tabs-stage div').hide();
   $($(this).attr('href')).show();
 });
+
