@@ -17,33 +17,28 @@
     <main class="tabs">
       <div class="tabs-nav">
         <div class="button"><a href="#js-main">Main</a></div>
-        <div class="button"><a href="#js-booking">Booking</a></div>                 
         <div class="button"><a href="#js-guest">Guests</a></div>
-        <div class="button"><a href="#js-rooms">Rooms</a></div>
         <div class="button"><a href="#js-orders">Orders</a></div>
+        <div class="button"><a href="#js-rooms">Rooms</a></div>
       </div>
       <div class="tabs-stage">
         <div id="js-main">
           <input type="date" />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            nec neque nisi, dictum aliquet lectus.
-          </p>
-        </div>
-        <div id="js-booking">
-            <p>
-              Phasellus pharetra aliquet viverra. Donec scelerisque tincidunt
-              diam, eu fringilla urna auctor at.
-            </p>
+          <p>Availible Rooms: <span class="js-available-rooms">----</span></p>
+          <p>Today's Revenue: <span class="js-renevue">----</span></p>
+          <p>Occupied: <span class="js-occupied">----</span>%</p>
         </div>
         <div id="js-guest">
-          <p>
-            Phasellus pharetra aliquet viverra. Donec scelerisque tincidunt
-            diam, eu fringilla urna auctor at.
-          </p>
+            <select id='js-guest-list'></select>
+            <button id="js-select-guest">Select Guest</button>
+          <p>Currently viewing: <span class="js-current-guest"> (Select a Guest)</viewing:span></p>
         </div>
         <div id="js-rooms">
-          <p>Here is where we would display the room information!!</p>
+          <h2>Avalible Rooms</h2>
+          <h3>make a table</h3>
+          <p class="type">Type:</p>
+          <p class="number-of-beds">#Beds:</p>
+          <p class="bidet"><span>Bidet:</span></p>
         </div>
         <div id="js-orders">
           <p>Here is where we would display the bookings!!</p>

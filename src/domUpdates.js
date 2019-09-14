@@ -17,6 +17,10 @@ const domUpdates = {
     $('#date').html(today)
   },
   
+  populateDOMList(name, id) {
+    $('#js-guest-list').append(`<option value='${id}'> ${name} </option>`)
+  },
+
 }
 
 export default domUpdates; 
