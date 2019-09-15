@@ -24,13 +24,19 @@
       <div class="tabs-stage">
         <div id="js-main">
           <input type="date" id="js-date" />
-          <p>Availible Rooms: <span class="js-available-rooms">----</span></p>
-          <p>Today's Revenue: <span class="js-renevue">----</span></p>
-          <p>Occupied: <span class="js-occupied">----</span>%</p>
+          <p>Rooms: </p>
+          <ul>
+            <li></p>Avalibility:<span class="js-available-rooms">----</span></p></li>
+            <li><p>Booked:<span class="js-booked-rooms">---</span></p></li>
+          </ul>
+
+          <p>Today's Revenue: $<span class="js-renevue">----</span></p>
         </div>
         <div id="js-guest">
           <section>
-            <select id='js-guest-list'></select>
+            <select id='js-guest-list'>
+              <option value="new">New guest? Other guests ⬇️</option>
+            </select>
             <button id="js-select-guest">Select Guest</button>
           </section>
           <p>Currently viewing: <span class="js-current-guest"> (Select a Guest)</viewing:span></p>

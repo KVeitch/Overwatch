@@ -26,7 +26,7 @@ class Hotel {
   getPercentRoomsAvailable(date) {
     let percentRoomsAvailable = (100 * (this.getTotalRoomsAvailable(date) /
         this.rooms.length)).toFixed(0);
-    let percentRoomsTaken = (100 * (1 - percentRoomsAvailable)).toFixed(0);
+    let percentRoomsTaken = (100 - percentRoomsAvailable).toFixed(0);
 
     return {available: percentRoomsAvailable, taken: percentRoomsTaken}
   }
@@ -36,12 +36,12 @@ class Hotel {
   }
 
   getTotalRevenue(date) {
-    return this.getRoomRevenue(date) + this.getServicesRevenue(date);
+    return (this.getRoomsRevenue(date) + this.getServicesRevenue(date)).toFixed(2);
   }
 
   getRoomsRevenue(date) {
-    this.rooms.reduce((revenue, room) => {
-      this.booking.forEach(booking => {
+    return this.rooms.reduce((revenue, room) => {
+      this.bookings.forEach(booking => {
         if (room.number === booking.roomNumber && booking.date === date) {
           revenue += room.costPerNight;
         }
@@ -52,9 +52,12 @@ class Hotel {
 
   getServicesRevenue(date) {
     let orders = this.getAllOrders(date);
-    orders.reduce((revenue, order) => revenue + order.totalCost, 0)
+    return orders.reduce((revenue, order) => revenue += order.totalCost, 0)
   }
 
+  newGuest() {
+    console.log('newGuest')
+  }
 }
 
 export default Hotel;

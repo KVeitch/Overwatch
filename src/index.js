@@ -7,6 +7,10 @@ import './images/bed.svg'
 import '../src/images/mountain.jpg';
 import domUpdates from './domUpdates';
 import Hotel from './hotel';
+let today = `${new Date().getFullYear()}/${String( new Date()
+  .getMonth() + 1)
+  .padStart(2, '0')}/${String(new Date().getDate())
+  .padStart(2, '0')}`;
 
 let hotel;
 //Data import from server
@@ -24,11 +28,12 @@ let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/book
   
 Promise.all([servicesData, userData, roomData, bookingData])
   .then(data => hotel = new Hotel(data))
-  .then(()=>{populateGuestList()})
+  // .then(()=>populateGuestList())
+  .then(()=>initialDOMPopulate())
 
 //Starts Clock on header and set todays date
 domUpdates.updateClock()
-domUpdates.setCurrentDate()
+domUpdates.setCurrentDate(today)
 
 // Displays the first tab by default
 $('.tabs-stage div').hide();
@@ -50,12 +55,28 @@ function populateGuestList() {
     .forEach(guest=> {
       domUpdates.populateDOMList(guest.name, guest.id)
     })
-  console.log(hotel.guests[0].name,hotel.guests[1].name)
 }
 
 $('#js-select-guest').click(()=>selectGuest())
 
 
 function selectGuest() {
-  hotel.currentGuest
+  if ($('#js-guest-list').val() === 'new') {
+    hotel.newGuest()
+  } else {
+  //create current guest
+  //update the DOM for the GUEST
+  console.log('selectGuest', $('#js-guest-list').val())
+  }
+}
+
+function initialDOMPopulate() {
+  let percentAvailable = hotel.getPercentRoomsAvailable(today);
+  let revenue = hotel.getTotalRevenue(today);
+  console.log('index', revenue)
+  populateGuestList();
+  domUpdates.updateAvailableRooms(percentAvailable.available);
+  domUpdates.updateBookedRooms(percentAvailable.taken);
+  domUpdates.updateTodayRevenue(revenue);
+
 }

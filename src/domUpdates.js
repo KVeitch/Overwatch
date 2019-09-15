@@ -9,16 +9,24 @@ const domUpdates = {
     setTimeout(domUpdates.updateClock, 60000);
   },
 
-  setCurrentDate() {
-    let today = `${new Date().getFullYear()}/${String( new Date()
-      .getMonth() + 1)
-      .padStart(2, '0')}/${String(new Date().getDate())
-      .padStart(2, '0')}`;
+  setCurrentDate(today) {
     $('#date').html(today)
   },
   
   populateDOMList(name, id) {
     $('#js-guest-list').append(`<option value='${id}'> ${name} </option>`)
+  },
+
+  updateAvailableRooms(percent) {
+    $('.js-available-rooms').text(`${percent}%`)
+  },
+
+  updateBookedRooms(percent) {
+    $('.js-booked-rooms').text(`${percent}%`)
+  },
+  
+  updateTodayRevenue(revenue) {
+    $('.js-renevue').text(revenue)
   },
 
 }
