@@ -100,13 +100,10 @@ a:hover {
   cursor: default;
 }
 .tabs-stage {
-  // border: 1px solid #cecfd5;
   border-radius: 0 6px 6px 6px;
   border-top: 0;
   clear: both;
   padding: 24px 30px;
-  // position: relative;
-  // top: -1px;
   background:$activeTab;
   min-height: 100%;
 }
@@ -127,6 +124,15 @@ a:hover {
 	-webkit-appearance: none;
   appearance: none;
 }
+#js-main {
+  ul {
+    list-style: none;
+    li {
+      margin-left:40px;
+    }
+  }
+}
+
 button {
   font-size: 22px;
   line-height: 1.3;
