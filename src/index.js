@@ -53,6 +53,9 @@ function populateGuestList() {
   console.log(hotel.guests[0].name,hotel.guests[1].name)
 }
 
+$('#js-select-guest').click(()=>selectGuest())
 
 
-
+function selectGuest() {
+  hotel.currentGuest
+}
