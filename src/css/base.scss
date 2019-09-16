@@ -170,3 +170,15 @@ button {
   display: none;
   margin-top:30px;
 }
+
+.js-daily-totals {
+  height:500px;
+  width:25%;
+  overflow-y: scroll;
+  border:1px solid $accentcolorBlue;
+
+    p{
+      font-size: 12px;
+      border: 1px dashed $backgroundColor;
+    }
+}

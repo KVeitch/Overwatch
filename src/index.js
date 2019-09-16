@@ -59,22 +59,32 @@ $('.tabs-nav a').on('click', function(event) {
 function initialDOMPopulate() {
   let percentAvailable = hotel.getPercentRoomsAvailable(today);
   let revenue = hotel.getTotalRevenue(today);
-  let totalSales = hotel.order.getAllTimeOrderTotal()
+  let totalSales = hotel.order.getAllTimeOrderTotal();
 
   populateGuestList();
   domUpdates.updateAvailableRooms(percentAvailable.available);
   domUpdates.updateBookedRooms(percentAvailable.taken);
   domUpdates.updateTodayRevenue(revenue);
-  domUpdates.displayAllTimeSales(totalSales)
-  updateTodayOrder(today)
+  domUpdates.displayAllTimeSales(totalSales);
+  displayRoomServiceDaylyTotal()
+  updateTodayOrder(today);
 }
+
+function displayRoomServiceDaylyTotal() {
+  let dailyOrderTotals = hotel.order.getTotalForEachDay();
+  Object.keys(dailyOrderTotals).forEach(date => {
+    let money = dailyOrderTotals[date];
+    domUpdates.displayDailyTotals(date, money);
+  });
+}
+
 
 function populateGuestList() {
   hotel.guests
     .sort((guestA, guestB) => (guestA.name > guestB.name) ? 1 : -1)
     .forEach(guest=> {
       domUpdates.populateDOMList(guest.name, guest.id)
-    })
+    });
 }
 
 $('#js-select-guest').click(()=>selectGuest())
@@ -82,13 +92,22 @@ $('#js-select-guest').click(()=>selectGuest())
 function selectGuest() {
   if ($('#js-guest-list').val() === 'new') {
     domUpdates.displayNew()
+    domUpdates.clearCurrentCustomerPastOrders()
   } else {
     hotel.getCurrentGuest($('#js-guest-list').val())
     domUpdates.updateCurrentGuest(hotel.currentGuest.name)
+    updateGuestCurrentOrderList()
   }
 }
 
+function updateGuestCurrentOrderList() {
+  domUpdates.clearCurrentCustomerPastOrders()
+  hotel.currentGuest.roomServices.forEach(order =>
+    domUpdates.displayCurrentCustomerPastOrders(order))
+}
+
 $('.new-guest-btn').click(createNewGuest)
+
 
 function createNewGuest() {
   if ($('#js-new-guest-name').val() !== '') {
@@ -108,7 +127,11 @@ function updateTodayOrder(today) {
 }
 
 
-$('#js-order-by-date-btn').click(()=>
-  console.log('clicky click')
-)
+$('#js-order-by-date-btn').click(ordersByDate)
+
+function ordersByDate() {
+  let date = $('#js-order-date').val().split('-').join('/');
+  domUpdates.clearOrderByDate()
+  hotel.order.getOrdersByDate(date).forEach(order => domUpdates.displayChosenDateOrders(order))
+}
 

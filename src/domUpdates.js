@@ -45,25 +45,47 @@ const domUpdates = {
     if (order) {
       $('.js-order-list').append(
         `<li>${order.food} / Price: $${order.totalCost}</li>`
-      )
+      );
     } else {
-      $('.js-order-list').append(
-        'No Orders Today'
-      )
+      $('.js-order-list').append('No Orders Today');
     }
   },
 
   displayCurrentGuestOrder(order) {
     $('.js-current-guest').append(
       'bob'
-    )
+    );
   },
 
   displayAllTimeSales(amount) {
     $('.js-all-time-sale').text(amount)
-  }
+  },
 
+  displayChosenDateOrders(order) {
+    $('.js-order-list-by-date').append(
+      `<li>${order.food} / Price: $${order.totalCost}</li>`
+    );
+  },
 
+  clearOrderByDate() {
+    $('.js-order-list-by-date').html('');
+  },
+
+  displayCurrentCustomerPastOrders(order) {
+    $('.js-current-guest-orders').append(
+      `<li>Ordered ${order.food} on ${order.date} for $${order.totalCost}</li>`
+    );
+  },
+
+  clearCurrentCustomerPastOrders() {
+    $('.js-current-guest-orders').html('');
+  },
+
+  displayDailyTotals(date, money) {
+    $('.js-daily-totals').append(
+      `<p class="list">${date} / ${money.toFixed(2)}</p>`
+    )
+  },
 
 }
 
