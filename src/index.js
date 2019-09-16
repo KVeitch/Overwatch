@@ -16,6 +16,9 @@ let today = `${new Date().getFullYear()}/${String( new Date()
   .padStart(2, '0')}/${String(new Date().getDate())
   .padStart(2, '0')}`;
 
+// Change date to any other date
+// today = '2019/09/11'
+
 let hotel;
 //Data import from server
 let servicesData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices')
@@ -32,8 +35,8 @@ let bookingData = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/book
   
 Promise.all([servicesData, userData, roomData, bookingData])
   .then(data => hotel = new Hotel(data))
-  // .then(()=>populateGuestList())
-  .then(()=>initialDOMPopulate())
+  .then(() => hotel.createOrder())
+  .then(() => initialDOMPopulate())
 
 //Starts Clock on header and set todays date
 domUpdates.updateClock()
@@ -53,27 +56,58 @@ $('.tabs-nav a').on('click', function(event) {
   $($(this).attr('href')).show();
 });
 
+function initialDOMPopulate() {
+  let percentAvailable = hotel.getPercentRoomsAvailable(today);
+  let revenue = hotel.getTotalRevenue(today);
+  let totalSales = hotel.order.getAllTimeOrderTotal();
+
+  populateGuestList();
+  domUpdates.updateAvailableRooms(percentAvailable.available);
+  domUpdates.updateBookedRooms(percentAvailable.taken);
+  domUpdates.updateTodayRevenue(revenue);
+  domUpdates.displayAllTimeSales(totalSales);
+  displayRoomServiceDaylyTotal()
+  updateTodayOrder(today);
+}
+
+function displayRoomServiceDaylyTotal() {
+  let dailyOrderTotals = hotel.order.getTotalForEachDay();
+  Object.keys(dailyOrderTotals).forEach(date => {
+    let money = dailyOrderTotals[date];
+    domUpdates.displayDailyTotals(date, money);
+  });
+}
+
+
 function populateGuestList() {
   hotel.guests
     .sort((guestA, guestB) => (guestA.name > guestB.name) ? 1 : -1)
     .forEach(guest=> {
       domUpdates.populateDOMList(guest.name, guest.id)
-    })
+    });
 }
 
 $('#js-select-guest').click(()=>selectGuest())
 
-
 function selectGuest() {
   if ($('#js-guest-list').val() === 'new') {
     domUpdates.displayNew()
+    domUpdates.clearCurrentCustomerPastOrders()
   } else {
     hotel.getCurrentGuest($('#js-guest-list').val())
     domUpdates.updateCurrentGuest(hotel.currentGuest.name)
+    updateGuestCurrentOrderList()
   }
 }
 
+function updateGuestCurrentOrderList() {
+  domUpdates.clearCurrentCustomerPastOrders()
+  hotel.currentGuest.roomServices.forEach(order =>
+    domUpdates.displayCurrentCustomerPastOrders(order))
+}
+
 $('.new-guest-btn').click(createNewGuest)
+
 
 function createNewGuest() {
   if ($('#js-new-guest-name').val() !== '') {
@@ -86,11 +120,18 @@ function createNewGuest() {
   }
 }
 
-function initialDOMPopulate() {
-  let percentAvailable = hotel.getPercentRoomsAvailable(today);
-  let revenue = hotel.getTotalRevenue(today);
-  populateGuestList();
-  domUpdates.updateAvailableRooms(percentAvailable.available);
-  domUpdates.updateBookedRooms(percentAvailable.taken);
-  domUpdates.updateTodayRevenue(revenue);
+function updateTodayOrder(today) {
+  let bob = hotel.order.getOrdersByDate(today)
+
+  bob.forEach(order => domUpdates.updateOrderListByDate(order))
 }
+
+
+$('#js-order-by-date-btn').click(ordersByDate)
+
+function ordersByDate() {
+  let date = $('#js-order-date').val().split('-').join('/');
+  domUpdates.clearOrderByDate()
+  hotel.order.getOrdersByDate(date).forEach(order => domUpdates.displayChosenDateOrders(order))
+}
+

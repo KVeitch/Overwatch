@@ -127,7 +127,9 @@ a:hover {
 
 #js-guest-list,
 #js-date,
-#js-new-guest-name {
+#js-new-guest-name,
+.menu,
+#js-order-date {
   display:block;
   font-size: 22px;
   line-height: 1.3;
@@ -167,4 +169,16 @@ button {
 .js-new-guest {
   display: none;
   margin-top:30px;
+}
+
+.js-daily-totals {
+  height:500px;
+  width:25%;
+  overflow-y: scroll;
+  border:1px solid $accentcolorBlue;
+
+    p{
+      font-size: 12px;
+      border: 1px dashed $backgroundColor;
+    }
 }

@@ -6,6 +6,8 @@ class Guest {
     this.roomServices = services;
   }
   
+  
+
 }
 
 export default Guest;
