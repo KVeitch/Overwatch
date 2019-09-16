@@ -18,9 +18,15 @@ class Hotel {
       if (booking.date === date) {
         acc++;
       }
-      return acc
+      return acc;
     }, 0);
-    return this.rooms.length - bookedRooms
+    return this.rooms.length - booked;
+  }
+
+  getPercentRoomsAvailable(date) {
+    let percentRoomsTaken = (100 * (1-this.getTotalRoomsAvailable(date)/this.rooms.length)).toFixed(0);
+
+    return {available: this.getTotalRoomsAvailable(date), taken: percentRoomsTaken}
   }
 
   getAllOrders(date) {
@@ -28,20 +34,39 @@ class Hotel {
   }
 
   getTotalRevenue(date) {
-    return getRoomRevenue(date) + getServicesRevenue(date);
+    return (this.getRoomsRevenue(date) + this.getServicesRevenue(date)).toFixed(2);
   }
 
   getRoomsRevenue(date) {
-    
+    return this.rooms.reduce((revenue, room) => {
+      this.bookings.forEach(booking => {
+        if (room.number === booking.roomNumber && booking.date === date) {
+          revenue += room.costPerNight;
+        }
+      });
+      return revenue;
+    }, 0);
   }
 
   getServicesRevenue(date) {
     let orders = this.getAllOrders(date);
-    orders.reduce((revenue, order) => revenue + order.totalCost, 0)
+    return orders.reduce((revenue, order) => revenue += order.totalCost, 0)
   }
 
+  getCurrentGuest(currentID) {
+    let id = parseInt(currentID)
+    let guest = this.guests.find(guest => guest.id === id);
+    let guestBooking = this.bookings.filter(booking => booking.userID === id);
+  
+    let guestService = this.roomServices.filter(services => services.userID === id);
+    this.currentGuest = new Guest (guest, guestBooking, guestService)
+  }
 
-
+  addGuestToGuests(guestName) {
+    let id = (this.guests.length + 1);
+    this.guests.push({name: guestName, id:id})
+    return id;
+  }
 }
 
 export default Hotel;

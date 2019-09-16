@@ -16,24 +16,35 @@
     </header>
     <main class="tabs">
       <div class="tabs-nav">
-        <div class="button"><a href="#js-main">Main</a></div>
-        <div class="button"><a href="#js-guest">Guests</a></div>
-        <div class="button"><a href="#js-orders">Orders</a></div>
-        <div class="button"><a href="#js-rooms">Rooms</a></div>
+        <div class="button"><a href="#js-main"><img src="./images/reception.svg" alt="Main Tab Access"> Main</a></div>
+        <div class="button"><a href="#js-guest"><img src="./images/user.svg" alt="Guest Tab Access"> Guests</a></div>
+        <div class="button"><a href="#js-orders"><img src="./images/room-service.svg" alt="Order Tab Access"> Orders</a></div>
+        <div class="button"><a href="#js-rooms"><img src="./images/bed.svg" alt="Room Tab Access" > Rooms</a></div>
+        <section class="nav__section">Viewing: <span class="nav__section--name js-current-guest">------ -------</span></section>
       </div>
       <div class="tabs-stage">
         <div id="js-main">
           <input type="date" id="js-date" />
-          <p>Availible Rooms: <span class="js-available-rooms">----</span></p>
-          <p>Today's Revenue: <span class="js-renevue">----</span></p>
-          <p>Occupied: <span class="js-occupied">----</span>%</p>
+          <p>Rooms: </p>
+          <ul>
+            <li></p>Available Rooms:<span class="js-available-rooms">----</span></p></li>
+            <li><p>Occupancy:<span class="js-booked-rooms">---</span></p></li>
+          </ul>
+
+          <p>Today's Revenue: $<span class="js-renevue">----</span></p>
         </div>
         <div id="js-guest">
           <section>
-            <select id='js-guest-list'></select>
+            <select id='js-guest-list'>
+              <option value="new">New guest? Other guests ⬇️</option>
+            </select>
             <button id="js-select-guest">Select Guest</button>
           </section>
           <p>Currently viewing: <span class="js-current-guest"> (Select a Guest)</viewing:span></p>
+          <section class="js-new-guest">
+            <input id="js-new-guest-name">
+            <button class="new-guest-btn">Add Guest</button>  
+          </section>
         </div>
         <div id="js-rooms">
           <h2>Avalible Rooms</h2>

@@ -1,7 +1,7 @@
 class Guest {
-  constructor(guest, roomData, bookings, services) {
+  constructor(guest, bookings, services, roomData) {
     Object.assign(this, guest)
-    this.room = room
+    this.room = roomData || 0
     this.bookings = bookings
     this.roomServices = services;
   }
