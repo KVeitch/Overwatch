@@ -1,4 +1,5 @@
 import Guest from './guest'
+import Order from './order'
 
 class Hotel {
   constructor(data) {
@@ -57,8 +58,8 @@ class Hotel {
     let id = parseInt(currentID)
     let guest = this.guests.find(guest => guest.id === id);
     let guestBooking = this.bookings.filter(booking => booking.userID === id);
-  
     let guestService = this.roomServices.filter(services => services.userID === id);
+
     this.currentGuest = new Guest (guest, guestBooking, guestService)
   }
 
@@ -66,6 +67,10 @@ class Hotel {
     let id = (this.guests.length + 1);
     this.guests.push({name: guestName, id:id})
     return id;
+  }
+
+  createOrder() {
+    this.order = new Order (this.roomServices)
   }
 }
 

@@ -43,6 +43,14 @@ const domUpdates = {
     console.log('hide new')
   },
 
+  updateOrderListByDate(order) {
+    if (order) {
+      $('.js-order-list').append(
+        `<li>Item: ${order.food} Price: $${order.totalCost}</li>`
+      )
+    }
+  }
+
 }
 
 export default domUpdates; 
