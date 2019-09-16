@@ -17,7 +17,7 @@ let today = `${new Date().getFullYear()}/${String( new Date()
   .padStart(2, '0')}`;
 
 // Change date to any other date
-today = '2019/09/10'
+// today = '2019/09/11'
 
 let hotel;
 //Data import from server
@@ -59,10 +59,13 @@ $('.tabs-nav a').on('click', function(event) {
 function initialDOMPopulate() {
   let percentAvailable = hotel.getPercentRoomsAvailable(today);
   let revenue = hotel.getTotalRevenue(today);
+  let totalSales = hotel.order.getAllTimeOrderTotal()
+
   populateGuestList();
   domUpdates.updateAvailableRooms(percentAvailable.available);
   domUpdates.updateBookedRooms(percentAvailable.taken);
   domUpdates.updateTodayRevenue(revenue);
+  domUpdates.displayAllTimeSales(totalSales)
   updateTodayOrder(today)
 }
 
@@ -100,9 +103,12 @@ function createNewGuest() {
 
 function updateTodayOrder(today) {
   let bob = hotel.order.getOrdersByDate(today)
-  console.log('hola', bob)
+
   bob.forEach(order => domUpdates.updateOrderListByDate(order))
 }
 
 
+$('#js-order-by-date-btn').click(()=>
+  console.log('clicky click')
+)
 

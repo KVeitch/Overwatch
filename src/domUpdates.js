@@ -35,21 +35,35 @@ const domUpdates = {
 
   displayNew() {
     $('.js-new-guest').show()
-    console.log('display New')
   },
 
   hideNew() {
     $('.js-new-guest').hide()
-    console.log('hide new')
   },
 
   updateOrderListByDate(order) {
     if (order) {
       $('.js-order-list').append(
-        `<li>Item: ${order.food} Price: $${order.totalCost}</li>`
+        `<li>${order.food} / Price: $${order.totalCost}</li>`
+      )
+    } else {
+      $('.js-order-list').append(
+        'No Orders Today'
       )
     }
+  },
+
+  displayCurrentGuestOrder(order) {
+    $('.js-current-guest').append(
+      'bob'
+    )
+  },
+
+  displayAllTimeSales(amount) {
+    $('.js-all-time-sale').text(amount)
   }
+
+
 
 }
 

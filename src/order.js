@@ -11,6 +11,9 @@ class Order {
     this.orders.push(order);
   }
 
+  getAllTimeOrderTotal() {
+    return this.orders.reduce((acc, order) => acc += order.totalCost, 0).toFixed(2)
+  }
 }
 
 
