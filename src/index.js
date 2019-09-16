@@ -2,7 +2,11 @@
 // import './images/turing-logo.png'
 import $ from 'jquery';
 import './css/base.scss';
-import './images/bed.svg'
+import './images/bed.svg';
+import './images/user.svg';
+import './images/room-service.svg';
+import './images/reception.svg';
+
 // import './images'
 import '../src/images/mountain.jpg';
 import domUpdates from './domUpdates';
@@ -65,10 +69,9 @@ function selectGuest() {
     domUpdates.displayNew()
   } else {
     hotel.getCurrentGuest($('#js-guest-list').val())
-    domUpdates.updateCurrenTGuest(hotel.currentGuest.name)
+    domUpdates.updateCurrentGuest(hotel.currentGuest.name)
   }
 }
-
 
 $('.new-guest-btn').click(createNewGuest)
 
@@ -78,10 +81,10 @@ function createNewGuest() {
     hotel.getCurrentGuest(hotel.addGuestToGuests(name))
     domUpdates.hideNew()
     domUpdates.populateDOMList(hotel.currentGuest.name, hotel.currentGuest.id)
+    domUpdates.updateCurrentGuest(hotel.currentGuest.name)
     $('#js-new-guest-name').val('')
   }
 }
-
 
 function initialDOMPopulate() {
   let percentAvailable = hotel.getPercentRoomsAvailable(today);

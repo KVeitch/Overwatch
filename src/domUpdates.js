@@ -29,7 +29,7 @@ const domUpdates = {
     $('.js-renevue').text(revenue)
   },
 
-  updateCurrenTGuest(name) {
+  updateCurrentGuest(name) {
     $('.js-current-guest').text(name)
   },
 
