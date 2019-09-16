@@ -62,21 +62,32 @@ $('#js-select-guest').click(()=>selectGuest())
 
 function selectGuest() {
   if ($('#js-guest-list').val() === 'new') {
-    hotel.newGuest()
+    domUpdates.displayNew()
   } else {
-  //create current guest
-  //update the DOM for the GUEST
-  console.log('selectGuest', $('#js-guest-list').val())
+    hotel.getCurrentGuest($('#js-guest-list').val())
+    domUpdates.updateCurrenTGuest(hotel.currentGuest.name)
   }
 }
+
+
+$('.new-guest-btn').click(createNewGuest)
+
+function createNewGuest() {
+  if ($('#js-new-guest-name').val() !== '') {
+    let name = $('#js-new-guest-name').val()
+    hotel.getCurrentGuest(hotel.addGuestToGuests(name))
+    domUpdates.hideNew()
+    domUpdates.populateDOMList(hotel.currentGuest.name, hotel.currentGuest.id)
+    $('#js-new-guest-name').val('')
+  }
+}
+
 
 function initialDOMPopulate() {
   let percentAvailable = hotel.getPercentRoomsAvailable(today);
   let revenue = hotel.getTotalRevenue(today);
-  console.log('index', revenue)
   populateGuestList();
   domUpdates.updateAvailableRooms(percentAvailable.available);
   domUpdates.updateBookedRooms(percentAvailable.taken);
   domUpdates.updateTodayRevenue(revenue);
-
 }

@@ -64,13 +64,13 @@ main {
 }
 
 .tabs-nav {
-  width:40%;
+  width:100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .tabs-nav .button {
-  width: 40%;
+  width: 20%;
 }
 .tabs-nav .button:first-child a {
   border-right: 0;
@@ -92,13 +92,25 @@ a {
 a:hover {
   color: $hoverColor;
 }
+
+.nav__section {
+  width: 50%;
+  padding-top:10px;
+  text-align: center;
+  font-size: 28px;
+
+    span{
+      margin-left: 10px;
+    }
+}
+
 .tab-active a {
   background: $activeTab;
   border-bottom-color: transparent;
   color: $activeTextColor;
-
   cursor: default;
 }
+
 .tabs-stage {
   border-radius: 0 6px 6px 6px;
   border-top: 0;
@@ -144,4 +156,8 @@ button {
   background: $inactiveTab;
 	// box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
 	border-radius: .5em;
+}
+
+.js-new-guest {
+  display: none;
 }

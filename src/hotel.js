@@ -24,11 +24,9 @@ class Hotel {
   }
 
   getPercentRoomsAvailable(date) {
-    let percentRoomsAvailable = (100 * (this.getTotalRoomsAvailable(date) /
-        this.rooms.length)).toFixed(0);
-    let percentRoomsTaken = (100 - percentRoomsAvailable).toFixed(0);
+    let percentRoomsTaken = (100 * (1-this.getTotalRoomsAvailable(date)/this.rooms.length)).toFixed(0);
 
-    return {available: percentRoomsAvailable, taken: percentRoomsTaken}
+    return {available: this.getTotalRoomsAvailable(date), taken: percentRoomsTaken}
   }
 
   getAllOrders(date) {
@@ -55,8 +53,19 @@ class Hotel {
     return orders.reduce((revenue, order) => revenue += order.totalCost, 0)
   }
 
-  newGuest() {
-    console.log('newGuest')
+  getCurrentGuest(currentID) {
+    let id = parseInt(currentID)
+    let guest = this.guests.find(guest => guest.id === id);
+    let guestBooking = this.bookings.filter(booking => booking.userID === id);
+  
+    let guestService = this.roomServices.filter(services => services.userID === id);
+    this.currentGuest = new Guest (guest, guestBooking, guestService)
+  }
+
+  addGuestToGuests(guestName) {
+    let id = (this.guests.length + 1);
+    this.guests.push({name: guestName, id:id})
+    return id;
   }
 }
 

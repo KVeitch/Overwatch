@@ -17,16 +17,30 @@ const domUpdates = {
     $('#js-guest-list').append(`<option value='${id}'> ${name} </option>`)
   },
 
-  updateAvailableRooms(percent) {
-    $('.js-available-rooms').text(`${percent}%`)
+  updateAvailableRooms(number) {
+    $('.js-available-rooms').text(number)
   },
 
   updateBookedRooms(percent) {
-    $('.js-booked-rooms').text(`${percent}%`)
+    $('.js-booked-rooms').text(` ${percent}%`)
   },
   
   updateTodayRevenue(revenue) {
     $('.js-renevue').text(revenue)
+  },
+
+  updateCurrenTGuest(name) {
+    $('.js-current-guest').text(name)
+  },
+
+  displayNew() {
+    $('.js-new-guest').show()
+    console.log('display New')
+  },
+
+  hideNew() {
+    $('.js-new-guest').hide()
+    console.log('hide new')
   },
 
 }
