@@ -6,8 +6,10 @@ class Guest {
     this.roomServices = services;
   }
   
+  bookGuestRoom(room) {
+    this.bookings.push(room)
+  }
   
-
 }
 
 export default Guest;
