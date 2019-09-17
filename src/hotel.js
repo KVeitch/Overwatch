@@ -1,5 +1,6 @@
 import Guest from './guest'
 import Order from './order'
+import Booking from './booking'
 
 class Hotel {
   constructor(data) {
@@ -69,9 +70,16 @@ class Hotel {
     return id;
   }
 
-  createOrder() {
+  createDataRepo() {
     this.order = new Order (this.roomServices)
+    this.booking = new Booking (this.bookings)
   }
+
+  getRoom(roomNumber) {
+    return this.rooms.find(room => room.number === parseInt(roomNumber))
+  }  
+
+
 }
 
 export default Hotel;
