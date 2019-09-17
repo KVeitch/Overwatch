@@ -2,6 +2,7 @@ class Booking {
   constructor(bookings) {
     this.bookings = bookings;
   }
+  
   sortDataToObject() {
     return this.bookings.reduce((acc, booking) => {
       if (!acc[booking.date]) {

@@ -16,7 +16,6 @@ describe('Booking', function() {
   });
 
 
-
 describe('Hotel', function() {
 
   it('should be a function', () => {
