@@ -19,11 +19,6 @@ describe('Order', function() {
     order = hotel.order;
   });
   
-  afterEach( () => {
-    hotel = 0;
-    order = 0;
-  });
-
   it('should be a function', () => {
     expect(Order).to.be.a('function');
   });
