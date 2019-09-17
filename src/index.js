@@ -174,7 +174,7 @@ function roomByDate() {
 $('#room-avalibility-table').click(bookRoom)
 
 function bookRoom(e) {
-  if (e.target.classList.contains('js-booking-btn')) {
+  if (e.target.classList.contains('js-booking-btn') && hotel.currentGuest) {
     let selectedDate = $('#js-room-date').val().split('-').join('/')
     let selectedRoom = parseInt(e.target.value);
     let room = {
@@ -182,6 +182,7 @@ function bookRoom(e) {
       date: selectedDate,
       roomNumber: selectedRoom
     };
+    
     hotel.currentGuest.bookGuestRoom(room);
     hotel.booking.bookRoom(room);
   }
