@@ -259,7 +259,7 @@ table {
   border:1px solid $accentcolorBlue;
   border-radius: .5em;
   font-size: 14px;
-  padding:8px;
+  padding:8px 15px,;
   
   tbody {
     overflow-y: scroll;
@@ -290,3 +290,24 @@ table {
 #guest-room--table {
   width:300px;
 }
+
+#room-avalibility-table {
+  th {
+    width:110px;
+  }
+  td{
+    width:110px;
+    text-align: center;
+  }
+
+}
+
+
+// .js-rm-number,
+// .js-rm-bed-type,
+// .js-rm-bed-num,
+// .js-rm-bidet,
+// .js-rm-per-night,
+// .js-booking-btn {
+//   width:110px;
+// }

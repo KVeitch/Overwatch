@@ -93,7 +93,9 @@ const domUpdates = {
     let hasBidet = room.bidet ? 'Yes' : 'No';
 
     $('.js-room-by-date-table').append(
-      `<tr><td class="js-rm-number">${room.number}</td>
+      `<tr>
+      <td class=js-rm-type">${room.roomType}</td>
+      <td class="js-rm-number">${room.number}</td>
       <td class="js-rm-bed-type">${room.bedSize}</td>
       <td class="js-rm-bed-num">${room.numBeds}</td>
       <td class="js-rm-bidet">${hasBidet}</td>
