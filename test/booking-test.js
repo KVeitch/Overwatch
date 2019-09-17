@@ -47,9 +47,9 @@ describe('Booking', function() {
     expect(rooms).to.eql(sept11data)
   });
 
-  it.only('should be able to book a room', () => {
+  it('should be able to book a room', () => {
     let room = {
-      userID: 1,
+      userID: 999,
       date: '2019/09/17',
       roomNumber: 100
     };
@@ -58,7 +58,7 @@ describe('Booking', function() {
     booking.bookRoom(room)
 
     let lastRoom = booking.bookings[booking.bookings.length - 1]
-    
+
     expect(booking.bookings.length).to.equal(2002);
     expect(room).to.eql(lastRoom);
   });
