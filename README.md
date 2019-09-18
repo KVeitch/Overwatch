@@ -6,5 +6,5 @@ View the app here:
 ![]KVeitch.github.io/Overlook
 
 
-![appStart](docs/images/overlook.gif)
+![appStart](src/images/overlook.gif)
 
