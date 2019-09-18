@@ -53,18 +53,15 @@
           </section>
           <p>Currently viewing: <span class="js-current-guest"> (Select a Guest)</viewing:span></p>
           <section class="js-new-guest">
+            Add a new guest below
             <input id="js-new-guest-name">
             <button class="new-guest-btn">Add Guest</button>  
-          </section>
-          <section>
-            <input type="text" class="menu">
-            <button class="js-order-btn">Order Room Service</button>
           </section>
         </div>
         <div id="js-rooms">
           <h4>Most Popular Day(s):<span class="js-most-booked"></span></h4>
           <h4>Most Avalibility:<span class="js-least-booked"></span></h4>
-          <section class="js-current-guest-rooms">
+          <section class="js-current-guest-rooms js-guest-toggle hidden">
               <h4>Past rooms for <span class="js-current-guest">(Select a Guest)</span> </h4>
               <table class=”sortable” id="guest-room--table">
                 <thead>
@@ -81,7 +78,7 @@
               </tbody>
               </table>
           </section>
-          <sections>
+          <sections class="inline">
             <h4>Rooms Avalible on: <span class="js-room-date"></span></h4>
             <input type="date" id="js-room-date"  
                 title="Select a date to view"/>
@@ -114,7 +111,7 @@
           </sections>
         </div>
         <div id="js-orders">
-          <section class="stage-order-today">
+          <section class="stage-order-today js-guest-toggle">
             <h3>All Time Sales: $<span class="js-all-time-sale">0.00</span></h3>
             <ul class="js-order-list">
               Today's Orders:
@@ -122,18 +119,22 @@
             </ul>
           </section>
           <container class="flex">
-            <section class="js-daily-totals">
+            <section class="js-guest-toggle js-daily-totals">
               <p>Date / Total Sales</p>
               <!-- Insertiopn Point-->
             </section> 
             <section class="search-order">
-              <p>Orders on: <span class="js-selected-date"></span></p>
-              <input type="date" id="js-order-date" title="Select a date to view"/>
-              <button id="js-order-by-date-btn">View Order By Date</button>
-              <ul class="js-order-list-by-date"></ul>
-              <section>
+              <section class="js-guest-toggle"> 
+                <p>Orders on: <span class="js-selected-date"></span></p>
+                <input type="date" id="js-order-date" title="Select a date to view"/>
+                <button id="js-order-by-date-btn">View Order By Date</button>
+                <ul class="js-order-list-by-date"></ul>
+              </section>
+              <section class="hidden js-guest-toggle">
                   <h3><span class="js-current-guest">New Guest</span>'s Past Orders:</h3>
                   <ul class="js-current-guest-orders"></ul>
+                  <input type="text" class="menu">
+                  <button class="js-order-btn">Order Room Service</button>
                 </section> 
             </section>
         </container>            

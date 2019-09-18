@@ -94,13 +94,15 @@ const domUpdates = {
 
     $('.js-room-by-date-table').append(
       `<tr>
-      <td class=js-rm-type">${room.roomType}</td>
-      <td class="js-rm-number">${room.number}</td>
-      <td class="js-rm-bed-type">${room.bedSize}</td>
-      <td class="js-rm-bed-num">${room.numBeds}</td>
-      <td class="js-rm-bidet">${hasBidet}</td>
-      <td class="js-rm-per-night">${room.costPerNight}</td>
-      <td><button class="js-booking-btn" value="${room.number}" >Book Room</button></td>
+        <td class=js-rm-type">${room.roomType}</td>
+        <td class="js-rm-number">${room.number}</td>
+        <td class="js-rm-bed-type">${room.bedSize}</td>
+        <td class="js-rm-bed-num">${room.numBeds}</td>
+        <td class="js-rm-bidet">${hasBidet}</td>
+        <td class="js-rm-per-night">${room.costPerNight}</td>
+        <td>
+          <button class="js-booking-btn" value="${room.number}">Book Room</button>
+        </td>
       </tr>`
     );
   },
@@ -121,6 +123,9 @@ const domUpdates = {
     );
   },
 
+  showCurrentGuestItems() {
+    $('.js-guest-toggle').toggleClass('hidden');
+  }
 }
 
 export default domUpdates; 

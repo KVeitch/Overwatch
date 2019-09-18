@@ -110,9 +110,8 @@ function selectGuest() {
     hotel.getCurrentGuest($('#js-guest-list').val());
     domUpdates.updateCurrentGuest(hotel.currentGuest.name);
     updateGuestCurrentOrderList();
-    updateGuestRoomHistory
-    console.log(hotel.currentGuest)
-    updateGuestRoomHistory()
+    updateGuestRoomHistory();
+    domUpdates.showCurrentGuestItems();
   }
 }
 
@@ -139,6 +138,7 @@ function createNewGuest() {
     domUpdates.hideNew();
     domUpdates.populateDOMList(hotel.currentGuest.name, hotel.currentGuest.id);
     domUpdates.updateCurrentGuest(hotel.currentGuest.name);
+    domUpdates.showCurrentGuestItems()
     $('#js-new-guest-name').val('');
     $('#js-guest-list').val(hotel.currentGuest.id)
   }
