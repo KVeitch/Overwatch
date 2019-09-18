@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Mejores Vistas</title>
+  </head>
+  <body>
+    <header>
+      <h1>Mejores Vistas</h1>
+      <div>
+        <script type='text/javascript' 
+        src='https://darksky.net/widget/default-small/39.741,-104.9858/us12/en.js?width=65%&height=70&title=Full Forecast&textColor=f8f6f7&bgColor=f8f6f7&transparency=true&skyColor=undefined&fontFamily=Sans-Serif&customFont=&units=us'>
+        </script>
+        <div class="date-time">
+          <p id="time">00:00 PM</p>
+          <p id="date">0000/00/00</p>
+        </div>
+      </div>
+    </header>
+    <main class="tabs">
+      <div class="tabs-nav">
+        <div class="button">
+          <a href="#js-main">
+            <img src="./images/reception.svg" alt="Main Tab Access"> Main</a>
+        </div>
+        <div class="button">
+          <a href="#js-guest">
+            <img src="./images/user.svg" alt="Guest Tab Access"> Guests</a>
+        </div>
+        <div class="button">
+          <a href="#js-orders">
+            <img src="./images/room-service.svg" alt="Order Tab Access"> Orders</a>
+        </div>
+        <div class="button">
+          <a href="#js-rooms">
+            <img src="./images/bed.svg" alt="Room Tab Access"> Rooms</a>
+        </div>
+        <section class="nav__section">Viewing: <span class="nav__section--name js-current-guest">------ -------</span></section>
+      </div>
+      <div class="tabs-stage">
+        <div id="js-main">
+          <ul>Rooms:
+            <li>Available Rooms:<span class="js-available-rooms">----</span></li>
+            <li>Occupancy:<span class="js-booked-rooms">---</span></li>
+          </ul>
+          <p>Today's Revenue: <span class="js-renevue">----</span></p>
+        </div>
+        <div id="js-guest">
+          <section>
+            <select id='js-guest-list'>
+              <option value="new">New guest? Other guests ⬇️</option>
+            </select>
+            <button id="js-select-guest">Select Guest</button>
+          </section>
+          <p>Currently viewing: <span class="js-current-guest"> (Select a Guest)</viewing:span></p>
+          <section class="js-new-guest">
+            Add a new guest below
+            <input id="js-new-guest-name">
+            <button class="new-guest-btn">Add Guest</button>  
+          </section>
+        </div>
+        <div id="js-rooms">
+          <h4>Most Popular Day(s):<span class="js-most-booked"></span></h4>
+          <h4>Most Avalibility:<span class="js-least-booked"></span></h4>
+          <section class="js-current-guest-rooms js-guest-toggle hidden">
+              <h4>Past rooms for <span class="js-current-guest">(Select a Guest)</span> </h4>
+              <table class=”sortable” id="guest-room--table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Room Number</th>
+                  </tr>
+                </thead>
+                <tbody class="js-guest-room-history-table">
+                  <tr>
+                    <td>--------</td>
+                    <td>--------</td>                   
+                  </tr>
+              </tbody>
+              </table>
+          </section>
+          <sections class="inline">
+            <h4>Rooms Avalible on: <span class="js-room-date"></span></h4>
+            <input type="date" id="js-room-date"  
+                title="Select a date to view"/>
+            <button id="js-room-by-date-btn">Avalibility By Date</button>
+            <h3>Avalible Rooms</h3>
+            <table class=”sortable” id="room-avalibility-table">
+              <thead>
+                <tr>
+                  <th>Room Type</th>
+                  <th>Room #</th>
+                  <th>Bed type</th>
+                  <th># of Beds</th>
+                  <th>Bidet</th>
+                  <th>Per Night</th>
+                  <th>Book Room</th>
+                </tr>
+              </thead>
+              <tbody class="js-room-by-date-table">
+                <tr>
+                  <td>--------</td>
+                  <td>--------</td>
+                  <td>--------</td>
+                  <td>--------</td>
+                  <td>--------</td>
+                  <td>--------</td>
+                  <td>--------</td>                      
+                </tr>
+            </tbody>
+            </table>
+          </sections>
+        </div>
+        <div id="js-orders">
+          <section class="stage-order-today js-guest-toggle">
+            <h3>All Time Sales: $<span class="js-all-time-sale">0.00</span></h3>
+            <ul class="js-order-list">
+              Today's Orders:
+              <!-- Insertion point -->
+            </ul>
+          </section>
+          <container class="flex">
+            <section class="js-guest-toggle js-daily-totals">
+              <p>Date / Total Sales</p>
+              <!-- Insertiopn Point-->
+            </section> 
+            <section class="search-order">
+              <section class="js-guest-toggle"> 
+                <p>Orders on: <span class="js-selected-date"></span></p>
+                <input type="date" id="js-order-date" title="Select a date to view"/>
+                <button id="js-order-by-date-btn">View Order By Date</button>
+                <ul class="js-order-list-by-date"></ul>
+              </section>
+              <section class="hidden js-guest-toggle">
+                  <h3><span class="js-current-guest">New Guest</span>'s Past Orders:</h3>
+                  <ul class="js-current-guest-orders"></ul>
+                  <input type="text" class="menu">
+                  <button class="js-order-btn">Order Room Service</button>
+                </section> 
+            </section>
+        </container>            
+        </div>
+      </div>
+    </main>
+  <script type="text/javascript" src="main.bundle.js"></script></body>
+</html>
