@@ -11,10 +11,6 @@ class Hotel {
     this.currentGuest = {name:'Please Select a guest', id:0}
   }
 
-  getGuest(id) { 
-    return this.guests.find(guest => guest.name === name) 
-  }
-
   getTotalRoomsAvailable (date) {
     let booked = this.bookings.reduce((acc, booking) => {
       if (booking.date === date) {
